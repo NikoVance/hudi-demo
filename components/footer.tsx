@@ -15,6 +15,7 @@ export function Footer() {
           Prototype · illustrative data only · not financial advice · points subject to review
         </p>
         <div className="flex items-center gap-4 mono text-xs text-muted">
+          <a href="/admin" className="navlink">Admin</a>
           <span className="navlink">Docs</span>
           <span className="navlink">X</span>
           <span className="navlink">Telegram</span>
