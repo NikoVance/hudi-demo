@@ -12,9 +12,18 @@ const GROUPS: { title: string; items: { href: string; label: string; icon: strin
     ],
   },
   {
-    title: "Trading",
+    title: "Markets & Risk",
     items: [
       { href: "/admin/markets", label: "Markets", icon: "≣" },
+      { href: "/admin/sessions", label: "Sessions / Calendar", icon: "◷" },
+      { href: "/admin/funding", label: "Funding", icon: "∿" },
+      { href: "/admin/risk", label: "Risk & Breakers", icon: "⚖" },
+      { href: "/admin/market-makers", label: "Market Makers", icon: "▦" },
+    ],
+  },
+  {
+    title: "Accounts",
+    items: [
       { href: "/admin/users", label: "Users", icon: "◎" },
       { href: "/admin/liquidations", label: "Liquidations", icon: "⚠" },
     ],
