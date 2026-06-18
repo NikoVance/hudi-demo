@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hudi Points & Referrals — Prototype
 
-## Getting Started
+Front-end **prototype** (display only) for Hudi’s points & referral (fee-rebate) system, plus the product spec in [`PRD.md`](./PRD.md).
 
-First, run the development server:
+> Illustrative mock data only · no wallet, no back-end, no real balances · points subject to review.
 
+## Stack
+- Next.js 16 (App Router) · React 19 · TypeScript
+- Tailwind CSS v4 (CSS-first theme)
+- Deployed on Vercel · all pages statically prerendered
+
+## Screens
+| Route | Page |
+|---|---|
+| `/` | Dashboard — your points, breakdown, tiers, ways to earn |
+| `/referrals` | Referrals — code, share, rebate tiers, invitees, ledger |
+| `/leaderboard` | Leaderboard — pool split, podium, traders / MMs / friends |
+| `/how-it-works` | The model — formula, weighting, multipliers, anti-farming, FAQ |
+
+## Develop
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run start    # serve the build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
+```
+app/                 routes + globals.css (dark-neon theme)
+components/          nav, footer, ui primitives (Sparkline, Donut), tabs, copy
+lib/data.ts          all mock data + types + helpers
+PRD.md               product requirements (re-optimized design)
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design direction
+Dark “season campaign” theme — near-black canvas, neon-green primary with glow, monospace numerics, magenta/blue/gold accents. Recognizably Hudi, tuned for an airdrop/season-campaign feel.

@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
+/* ----------------------------------------------------------------------------
+   Hudi Points & Referrals — dark neon "season campaign" theme
+   Tailwind v4 (CSS-first). Tokens exposed via @theme so they work as utilities
+   (bg-surface, text-neon, border-line, font-mono, ...). Prototype = display only.
+---------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #06070a;
+  --bg-2: #0a0c11;
+  --surface: #0e1117;
+  --surface-2: #12161e;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.14);
+
+  --text: #e9edf5;
+  --muted: #8a93a6;
+
+  --neon: #2ef2a6;        /* primary — Hudi green */
+  --neon-dim: #16c98a;
+  --neon-soft: rgba(46, 242, 166, 0.12);
+  --pink: #ff5c93;        /* short / negative / accent */
+  --pink-soft: rgba(255, 92, 147, 0.12);
+  --blue: #5b8cff;        /* info / links */
+  --gold: #ffca5f;        /* highlights / rank */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface-2);
+  --color-line: var(--line);
+  --color-linestrong: var(--line-strong);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-neon: var(--neon);
+  --color-neondim: var(--neon-dim);
+  --color-pink: var(--pink);
+  --color-blue: var(--blue);
+  --color-gold: var(--gold);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(900px 500px at 78% -8%, rgba(46, 242, 166, 0.10), transparent 60%),
+    radial-gradient(700px 480px at 8% 0%, rgba(91, 140, 255, 0.08), transparent 55%),
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+  background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+  background-attachment: fixed;
 }
+
+/* ---- typography helpers ---- */
+.mono { font-family: var(--font-mono); }
+.label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 11px;
+  color: var(--muted);
+}
+.tabular { font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+
+/* ---- color / glow helpers ---- */
+.text-neon { color: var(--neon); }
+.text-pink { color: var(--pink); }
+.text-blue { color: var(--blue); }
+.text-gold { color: var(--gold); }
+.text-muted { color: var(--muted); }
+.glow { text-shadow: 0 0 18px rgba(46, 242, 166, 0.55), 0 0 40px rgba(46, 242, 166, 0.25); }
+.glow-pink { text-shadow: 0 0 18px rgba(255, 92, 147, 0.5); }
+
+/* ---- surfaces ---- */
+.card {
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  position: relative;
+}
+.card-hover { transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.card-hover:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px -20px rgba(0, 0, 0, 0.85);
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.chip-neon { color: var(--neon); border-color: rgba(46,242,166,.35); background: var(--neon-soft); }
+.chip-pink { color: var(--pink); border-color: rgba(255,92,147,.35); background: var(--pink-soft); }
+.chip-blue { color: var(--blue); border-color: rgba(91,140,255,.35); background: rgba(91,140,255,.12); }
+
+/* primary button */
+.btn-neon {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 13px;
+  font-weight: 600;
+  color: #04120c;
+  background: linear-gradient(180deg, #45ffba, var(--neon));
+  border-radius: 12px;
+  padding: 11px 18px;
+  box-shadow: 0 0 0 1px rgba(46,242,166,.4), 0 8px 30px -10px rgba(46,242,166,.6);
+  transition: transform .12s ease, box-shadow .12s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-neon:hover { transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(46,242,166,.6), 0 10px 34px -8px rgba(46,242,166,.75); }
+.btn-ghost {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 13px;
+  color: var(--text);
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: 11px 18px;
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-ghost:hover { border-color: var(--neon); color: var(--neon); }
+
+/* meters */
+.meter { height: 8px; border-radius: 999px; background: rgba(255,255,255,.06); overflow: hidden; }
+.meter > span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--neon-dim), var(--neon)); box-shadow: 0 0 16px rgba(46,242,166,.5); }
+
+/* simple table */
+.tbl { width: 100%; border-collapse: collapse; }
+.tbl th { text-align: left; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .12em; font-size: 10.5px; color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.tbl td { padding: 13px 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr.row-hover:hover td { background: rgba(255,255,255,.025); }
+
+/* nav link */
+.navlink { font-family: var(--font-mono); font-size: 13px; letter-spacing: .04em; color: var(--muted); transition: color .15s ease; }
+.navlink:hover { color: var(--text); }
+.navlink[data-active="true"] { color: var(--neon); }
+
+a { color: inherit; text-decoration: none; }
